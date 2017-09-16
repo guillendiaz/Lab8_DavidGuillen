@@ -31,7 +31,16 @@ void Alquimista::HabilidadEspecial(int ValUso, int Danio){
 }
 
 string Alquimista::toString(){
-	return "Clase: " + Clase + " Nombre: " +  Nombre + " HP: " + to_string(HP);
+	string RetStr;
+	RetStr =	+"Nombre:         | "+ Nombre +"\n"
+				+"   Clase:          | "+ Clase +"\n"
+				+"   HP:             | "+ to_string(HP) +"\n"
+				+"   Ataque Magico:  | "+ to_string(AtaqueMagico)+"\n"
+				+"   Ataque Fisico:  | "+ to_string(AtaqueFisico)+"\n"
+				+"   Defensa Magica: | "+ to_string(DefensaMagica) +"\n"
+				+"   Defensa Fisica: | "+ to_string(DefensaFisica) +"\n"
+				+"\n";
+	return RetStr;
 }
 
 Alquimista::~Alquimista(){

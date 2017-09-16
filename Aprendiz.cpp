@@ -11,7 +11,7 @@ Aprendiz::Aprendiz(string pNombre){
 	this->AtaqueMagico = 0;
 	this->AtaqueFisico = 10;
 	this->DefensaMagica = 0;
-	this->DefensaFisica = 0.10;
+	this->DefensaFisica = 0.1;
 	this->ExpNecesaria = 0;
 	this->Exp = 0;
 	this->ExpEnt = 25;
@@ -30,7 +30,16 @@ void Aprendiz::HabilidadEspecial(){
 }
 
 string Aprendiz::toString(){
-	return "Clase: " + Clase + " Nombre: " + Nombre + " HP: " + to_string(HP);
+	string RetStr;
+	RetStr =	+"Nombre:         | "+ Nombre +"\n"
+				+"   Clase:          | "+ Clase +"\n"
+				+"   HP:             | "+ to_string(HP) +"\n"
+				+"   Ataque Magico:  | "+ to_string(AtaqueMagico)+"\n"
+				+"   Ataque Fisico:  | "+ to_string(AtaqueFisico)+"\n"
+				+"   Defensa Magica: | "+ to_string(DefensaMagica) +"\n"
+				+"   Defensa Fisica: | "+ to_string(DefensaFisica) +"\n"
+				+"\n";
+	return RetStr;
 }
 
 Aprendiz::~Aprendiz(){

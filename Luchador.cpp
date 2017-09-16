@@ -82,7 +82,7 @@ void Luchador::HabilidadEspecial(int, int){
 }
 
 string Luchador::toString(){
-
+	
 }
 
 Luchador::~Luchador(){
