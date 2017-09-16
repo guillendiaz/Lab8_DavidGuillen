@@ -24,9 +24,11 @@ class Luchador{
 		int getExp();
 
 		int size();
+		void setHP(int);
 		int getHP();
 		string getClase();
 		int getAtaqueMagico();
+		void setAtaqueFisico(double);
 		int getAtaqueFisico();
 		double getDefensaMagica();
 		double getDefensaFisica();

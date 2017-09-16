@@ -5,11 +5,11 @@ Luchador::Luchador(){
 }
 
 Luchador::Luchador(string pNombre){
-	Nombre = pNombre;
+	this->Nombre = pNombre;
 }
 
 void Luchador::setNombre(string pNombre){
-	Nombre = pNombre;
+	this->Nombre = pNombre;
 }
 
 string Luchador::getNombre(){
@@ -25,7 +25,7 @@ string Luchador::getClasesAprendidas(int pos){
 }
 
 void Luchador::addCantBatGan(int pCant){
-	CantBatGan += pCant;
+	this->CantBatGan += pCant;
 }
 
 int Luchador::getCantBatGan(){
@@ -33,7 +33,7 @@ int Luchador::getCantBatGan(){
 }
 
 void Luchador::addExp(int pExp){
-	Exp += pExp;
+	this->Exp += pExp;
 }
 
 int Luchador::getExp(){
@@ -42,6 +42,10 @@ int Luchador::getExp(){
 
 int Luchador::size(){
 	return ClasesAprendidas.size();
+}
+
+void Luchador::setHP(int pHP){
+	this->HP = pHP;
 }
 
 int Luchador::getHP(){
@@ -54,6 +58,10 @@ string Luchador::getClase(){
 
 int Luchador::getAtaqueMagico(){
 	return AtaqueMagico;
+}
+
+void Luchador::setAtaqueFisico(double pAtaqueFisico){
+	this->AtaqueFisico = pAtaqueFisico;
 }
 
 int Luchador::getAtaqueFisico(){

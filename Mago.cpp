@@ -17,16 +17,17 @@ Mago::Mago(string pNombre){
 	this->ExpEnt = 75;
 }
 
-void Mago::HabilidadPasiva(){
+int Mago::HabilidadPasiva(){
 
 }
 
-void Mago::HabilidadEspecial(int ValUso, int Danio){
+int Mago::HabilidadEspecial(int ValUso, int Danio){
 	if (ValUso == 0){
 		cout<<"Habilidad Especial: Deshacer el daño recibido en el ultimo turno"<<endl;
-		this->HP += Danio;
+		return 0;
 	}else{
-		cout<<"Habilidad Especial: Deshacer el daño recibido en el ultimo turno"<<endl;
+		cout<<"Habilidad solo una vez por Pelea"<<endl;
+		return 0;
 	}
 }
 

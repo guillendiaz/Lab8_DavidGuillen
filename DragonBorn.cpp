@@ -16,17 +16,16 @@ DragonBorn::DragonBorn(string pNombre){
 	this->Exp = 0;
 	this->ExpEnt = 150;
 }
-
-void DragonBorn::HabilidadPasiva(){
+int DragonBorn::HabilidadPasiva(){
 
 }
 
-void DragonBorn::HabilidadEspecial(int ValUso, int ValTurno){
-	if (ValUso == 0 && ValTurno == 0){
+int DragonBorn::HabilidadEspecial(int ValUso, int pAtaque){
+	if (ValUso == 0){
 		cout<<"Habilidad Especial: Multiplicar ataque físico"<<endl;
-		this->AtaqueFisico *= 2;	
-	}else if (ValUso == 1 && ValTurno == 1){
-		this->AtaqueFisico /= 2;
+		return pAtaque * 2;	
+	}else{
+		return 0;
 	}	
 	
 }

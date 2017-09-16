@@ -17,14 +17,14 @@ Guerrero::Guerrero(string pNombre){
 	this->ExpEnt = 50;
 }
 
-void Guerrero::HabilidadPasiva(){
+int Guerrero::HabilidadPasiva(){
 
 }
 
-void Guerrero::HabilidadEspecial(int ValUso, int HP){
+int Guerrero::HabilidadEspecial(int ValUso, int HP){
 	if (ValUso == 0){
 		cout<<"Habilidad Especial: Regenerar 40 HP"<<endl;
-		return 40;	
+		return HP + 40;	
 	}else{
 		cout<<"Habilidad solo una vez por Pelea"<<endl;
 		return 0;

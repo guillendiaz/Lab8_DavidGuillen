@@ -8,8 +8,8 @@ class DragonBorn : public Luchador{
 	public:
 		DragonBorn();
 		DragonBorn(string);
-		void HabilidadPasiva();
-		void HabilidadEspecial(int, int);
+		int HabilidadPasiva();
+		int HabilidadEspecial(int, int);
 		string toString();
 		~DragonBorn();
 };

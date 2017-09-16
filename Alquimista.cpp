@@ -17,11 +17,11 @@ Alquimista::Alquimista(string pNombre){
 	this->ExpEnt = 100;
 }
 
-void Alquimista::HabilidadPasiva(){
+int Alquimista::HabilidadPasiva(){
 
 }
 
-void Alquimista::HabilidadEspecial(int ValUso, int Danio){
+int Alquimista::HabilidadEspecial(int ValUso, int Danio){
 	if (ValUso = 0){
 		cout<<"Habilidad Especial: Invulnerabilidad por un turno"<<endl;
 		this->HP += Danio;

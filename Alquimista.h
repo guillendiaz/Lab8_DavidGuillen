@@ -8,8 +8,8 @@ class Alquimista : public Luchador{
 	public:
 		Alquimista();
 		Alquimista(string);
-		void HabilidadPasiva();
-		void HabilidadEspecial(int, int);
+		int HabilidadPasiva();
+		int HabilidadEspecial(int, int);
 		string toString();
 		~Alquimista();
 };
