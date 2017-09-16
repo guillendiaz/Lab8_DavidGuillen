@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <time.h>
 #include "Luchador.h"
 #include "Aprendiz.h"
 #include "Guerrero.h"
@@ -43,6 +44,13 @@ int main(){
 			}
 				break;
 			case 4:{
+				int pos1, pos2;
+				string nuevonom;
+				cout<<"Ingrese Posición 1: ";
+				cin>>pos1;
+				cout<<"Ingrese Posición 2: ";
+				cin>>pos2;
+				cout<<"Inicio de Simulación"<<endl;
 				
 			}
 				break;
@@ -70,3 +78,21 @@ int Menu(){
 	}//while()
 
 }//Menu()
+
+void Simulacion(vector<Luchador*>luch, int pos1, int pos2){
+	srand(time(NULL));
+	do{
+		//Inicio de la Simulacion
+		cout<<"Turno de : "<<luch.at(pos1)->getNombre();
+		//Decidir que Hacer
+		int random = rand()%4;
+		switch(random){
+			case 0:
+				luch.at(pos2)->setHP(luch.at(pos2)->getHP() - luch.at(pos1)-> getAtaqueMagico());
+				break;
+			case 1:
+				luch.at(pos2)->setHP(luch.at(pos2)->getHP() - luch.at(pos1)-> getAtaqueFisico());
+				break;
+		}//switch()
+	} while (luch.at(pos1)->getHP() != 0 || luch.at(pos2)->getHP() != 0 );
+}//Simulacion()
