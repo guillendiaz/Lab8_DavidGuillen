@@ -8,8 +8,8 @@ class Aprendiz : public Luchador{
 	public:
 		Aprendiz();
 		Aprendiz(string);
-		void HabilidadPasiva(int, int);
-		void HabilidadEspecial();
+		int HabilidadPasiva(int, int);
+		int HabilidadEspecial();
 		string toString();
 		~Aprendiz();
 };

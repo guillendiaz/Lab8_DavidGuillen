@@ -40,6 +40,10 @@ int Luchador::getExp(){
 	return Exp;
 }
 
+int Luchador::size(){
+	return ClasesAprendidas.size();
+}
+
 int Luchador::getHP(){
 	return HP;
 }
@@ -73,11 +77,11 @@ int Luchador::getExpEnt(){
 }
 
 
-void Luchador::HabilidadPasiva(){
+int Luchador::HabilidadPasiva(){
 
 }
 
-void Luchador::HabilidadEspecial(int, int){
+int Luchador::HabilidadEspecial(int, int){
 
 }
 

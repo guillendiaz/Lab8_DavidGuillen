@@ -81,6 +81,7 @@ int Menu(){
 
 void Simulacion(vector<Luchador*>luch, int pos1, int pos2){
 	srand(time(NULL));
+	int UsoHabil = 0;
 	do{
 		//Inicio de la Simulacion
 		cout<<"Turno de : "<<luch.at(pos1)->getNombre();
@@ -93,6 +94,19 @@ void Simulacion(vector<Luchador*>luch, int pos1, int pos2){
 			case 1:
 				luch.at(pos2)->setHP(luch.at(pos2)->getHP() - luch.at(pos1)-> getAtaqueFisico());
 				break;
+			case 2:
+				luch.at(pos1)->setHP(luch.at(pos1)->getHP + (luch.at(pos1)->getHP * 0.45));
+				break;
+			case 3:
+				int randomHab = rand()%4;
+				switch(randomHab){
+					case 1:
+						for (int i = 0; i <=luch.at(pos1)->size()-1; ++i){
+							
+						}
+						break;
+				}//switch()2
+
 		}//switch()
 	} while (luch.at(pos1)->getHP() != 0 || luch.at(pos2)->getHP() != 0 );
 }//Simulacion()

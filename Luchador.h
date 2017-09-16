@@ -23,6 +23,7 @@ class Luchador{
 		void addExp(int);
 		int getExp();
 
+		int size();
 		int getHP();
 		string getClase();
 		int getAtaqueMagico();
@@ -32,8 +33,8 @@ class Luchador{
 		int getExpNecesaria();
 		int getExpEnt();
 
-		virtual void HabilidadPasiva();
-		virtual void HabilidadEspecial(int, int);
+		virtual int HabilidadPasiva();
+		virtual int HabilidadEspecial(int, int);
 		virtual string toString();
 		~Luchador();
 };

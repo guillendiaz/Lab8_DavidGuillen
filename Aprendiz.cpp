@@ -17,15 +17,17 @@ Aprendiz::Aprendiz(string pNombre){
 	this->ExpEnt = 25;
 }
 
-void Aprendiz::HabilidadPasiva(int ValUso, int pExp){
+int Aprendiz::HabilidadPasiva(int ValUso, int pExp){
 	if (ValUso == 1){
 		cout<<"Habilidad Pasiva: Gana Doble Exp al Vencer Cualquier Peleador"<<endl;
-		this->Exp += pExp * 2;
+		return pExp * 2;
+	}else{
+		return 0;
 	}
 
 }
 
-void Aprendiz::HabilidadEspecial(){
+int Aprendiz::HabilidadEspecial(){
 
 }
 
