@@ -85,7 +85,7 @@ int Luchador::getExpEnt(){
 }
 
 
-int Luchador::HabilidadPasiva(){
+int Luchador::HabilidadPasiva(int, int){
 
 }
 
@@ -95,6 +95,11 @@ int Luchador::HabilidadEspecial(int, int){
 
 string Luchador::toString(){
 	
+}
+
+bool Luchador::equals(Luchador* other)const{
+	return other==this;
+
 }
 
 Luchador::~Luchador(){

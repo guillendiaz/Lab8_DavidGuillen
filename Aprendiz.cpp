@@ -15,6 +15,7 @@ Aprendiz::Aprendiz(string pNombre){
 	this->ExpNecesaria = 0;
 	this->Exp = 0;
 	this->ExpEnt = 25;
+	this->Exp = ExpEnt;
 }
 
 int Aprendiz::HabilidadPasiva(int ValUso, int pExp){
@@ -27,7 +28,7 @@ int Aprendiz::HabilidadPasiva(int ValUso, int pExp){
 
 }
 
-int Aprendiz::HabilidadEspecial(){
+int Aprendiz::HabilidadEspecial(int, int){
 
 }
 

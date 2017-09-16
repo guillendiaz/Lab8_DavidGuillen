@@ -8,28 +8,43 @@
 #include "Mago.h"
 #include "Alquimista.h"
 #include "DragonBorn.h"
+#include "ADTList.h"
+#include "LinkedList.h"
 
 using namespace std;
+
 int Menu();
 //Se ingresa al Menu()
-void Simulacion(vector<Luchador*>, int, int);
+void Simulacion(ADTList*, int, int);
+void VerificarExp(ADTList*, int);
 int main(){
 	vector<Luchador*> luchadores;
+	ADTList* list = new LinkedList();
 	int opcion;
 	do{
 		switch(opcion=Menu()){
 			case 1:{
 				string nombre;
+				int pos = 0;
 				cout<<"Ingrese Nombre: ";
 				cin>>nombre;
 				Luchador* lu = new Aprendiz(nombre);
 				lu->addClasesAprendidas(lu->getClase());
 				luchadores.push_back(lu);
+				
+				if(list->insert(lu,pos)){
+					cout<< "Se ha Ingresado!"<<endl
+						<<endl;
+					pos++;
+				}else{
+					cout<<"Ocurrio un Error"<<endl
+						<<endl;
+				}
 			}
 				break;
 			case 2:{
-				for (int i = 0; i <= luchadores.size()-1; ++i){
-					cout<<i<<". "<<luchadores.at(i)->toString();
+				for (int i = 0; i < list->Size(); ++i){
+					cout<<i<<". "<<list->get(i)->toString();
 				}
 			}
 				break;
@@ -41,18 +56,20 @@ int main(){
 				cout<<"Ingrese Nuevo Nombre: ";
 				cin>>nuevonom;
 
-				luchadores.at(pos)->setNombre(nuevonom);
+				list->get(pos)->setNombre(nuevonom);
 			}
 				break;
 			case 4:{
 				int pos1, pos2;
 				string nuevonom;
 				cout<<"Ingrese Posición 1: ";
-				cin>>pos1;
-				cout<<"Ingrese Posición 2: ";
 				cin>>pos2;
-				cout<<"Inicio de Simulación"<<endl;
-				Simulacion(luchadores, pos1, pos2);
+				cout<<"Ingrese Posición 2: ";
+				cin>>pos1;
+				cout<<endl;
+				cout<<"Inicio de Simulación"<<endl
+					<<endl;
+				Simulacion(list, pos1, pos2);
 			}
 				break;
 		}//switch()
@@ -71,6 +88,7 @@ int Menu(){
 			<<"4. Simulación"<<endl
 			<<"5. Salir"<<endl;
 		cin>>opcion;
+		cout<<endl;
 		if(opcion < 1 || opcion > 5){
 			cout<<"Valor Incorecto"<<endl;
 			opcion = 0;
@@ -80,37 +98,36 @@ int Menu(){
 
 }//Menu()
 
-void Simulacion(vector<Luchador*>luch, int pos1, int pos2){
+void Simulacion(ADTList* luch, int pos1, int pos2){
 	srand(time(NULL));
-	int UsoHabil = 0, isDrag = 0, Veri = 0, turno=0, random, random2, HPLu1 = 0, HPLu2 = 0;
-	HPLu1 = luch.at(pos1)->getHP();
-	HPLu2 = luch.at(pos2)->getHP();
+	int UsoHabil = 0, UsoHabilCent = 0, isDrag = 0, Veri = 0, turno=0, random, random2, HPLu1 = 0, HPLu2 = 0;
+	HPLu1 = luch->get(pos1)->getHP();
+	HPLu2 = luch->get(pos2)->getHP();
 	do{
 		//Inicio de la Simulacion
 		//Primer Luchador
 		//Decidir que Hacer
-		
 		random = rand()%4;
 		switch(random){
 			case 0:
-				luch.at(pos2)->setHP(luch.at(pos2)->getHP() - luch.at(pos1)-> getAtaqueMagico());
+				luch->get(pos2)->setHP(luch->get(pos2)->getHP() - luch->get(pos1)-> getAtaqueMagico());
 				break;
 			case 1:
-				luch.at(pos2)->setHP(luch.at(pos2)->getHP() - luch.at(pos1)-> getAtaqueFisico());
+				luch->get(pos2)->setHP(luch->get(pos2)->getHP() - luch->get(pos1)-> getAtaqueFisico());
 				break;
 			case 2:
-				luch.at(pos1)->setHP(luch.at(pos1)->getHP() + (luch.at(pos1)->getHP() * 0.45));
+				luch->get(pos1)->setHP(luch->get(pos1)->getHP() + (luch->get(pos1)->getHP() * 0.45));
 				break;
 			case 3:
 				int randomHab = rand()%4;
 				do{
 					switch(0){
 						case 0:
-							UsoHabil = 1;
-							for (int i = 0; i <=luch.at(pos1)->size()-1; ++i){
-								if (luch.at(pos1)->getClasesAprendidas(i) == "Guerrero"){
+							
+							for (int i = 0; i <=luch->get(pos1)->size()-1; ++i){
+								if (luch->get(pos1)->getClasesAprendidas(i) == "Guerrero"){
 									Luchador* LuTem = new Guerrero();
-									luch.at(pos1)->setHP(LuTem->HabilidadEspecial(UsoHabil, luch.at(pos1)->getHP()));
+									luch->get(pos1)->setHP(LuTem->HabilidadEspecial(UsoHabil, luch->get(pos1)->getHP()));
 									UsoHabil = 1;
 								}else{
 									break;
@@ -118,11 +135,11 @@ void Simulacion(vector<Luchador*>luch, int pos1, int pos2){
 							}
 							break;
 						case 1:
-							UsoHabil = 1;
-							for (int i = 0; i <=luch.at(pos1)->size()-1; ++i){
-								if (luch.at(pos1)->getClasesAprendidas(i) == "Mago"){
+							
+							for (int i = 0; i <=luch->get(pos1)->size()-1; ++i){
+								if (luch->get(pos1)->getClasesAprendidas(i) == "Mago"){
 									Luchador* LuTem = new Mago();
-									luch.at(pos1)->setHP(LuTem->HabilidadEspecial(UsoHabil, luch.at(pos1)->getHP()));
+									luch->get(pos1)->setHP(LuTem->HabilidadEspecial(UsoHabil, luch->get(pos1)->getHP()));
 									UsoHabil = 1;
 								}else{
 									break;
@@ -130,11 +147,11 @@ void Simulacion(vector<Luchador*>luch, int pos1, int pos2){
 							}
 							break;
 						case 2:
-							UsoHabil = 1;
-							for (int i = 0; i <=luch.at(pos1)->size()-1; ++i){
-								if (luch.at(pos1)->getClasesAprendidas(i) == "Alquimista"){
+							
+							for (int i = 0; i <=luch->get(pos1)->size()-1; ++i){
+								if (luch->get(pos1)->getClasesAprendidas(i) == "Alquimista"){
 									Luchador* LuTem = new Alquimista();
-									luch.at(pos1)->setHP(LuTem->HabilidadEspecial(UsoHabil, luch.at(pos1)->getHP()));
+									luch->get(pos1)->setHP(LuTem->HabilidadEspecial(UsoHabil, luch->get(pos1)->getHP()));
 									UsoHabil = 1;
 								}else{
 									break;
@@ -142,13 +159,13 @@ void Simulacion(vector<Luchador*>luch, int pos1, int pos2){
 							}
 							break;
 						case 3:
-							UsoHabil = 1;
+							
 							Veri = turno;
 							isDrag = 1;
-							for (int i = 0; i <=luch.at(pos1)->size()-1; ++i){
-								if (luch.at(pos1)->getClasesAprendidas(i) == "DragonBorn"){
+							for (int i = 0; i <=luch->get(pos1)->size()-1; ++i){
+								if (luch->get(pos1)->getClasesAprendidas(i) == "DragonBorn"){
 									Luchador* LuTem = new DragonBorn();
-									luch.at(pos1)->setAtaqueFisico(LuTem->HabilidadEspecial(UsoHabil, luch.at(pos1)->getAtaqueFisico()));
+									luch->get(pos1)->setAtaqueFisico(LuTem->HabilidadEspecial(UsoHabil, luch->get(pos1)->getAtaqueFisico()));
 									UsoHabil = 1;
 								}else{
 									break;
@@ -156,10 +173,12 @@ void Simulacion(vector<Luchador*>luch, int pos1, int pos2){
 							}
 							break;
 				}//switch()2
-				} while (UsoHabil != 1);
+				UsoHabilCent = 1;
+				} while (UsoHabilCent != 1);
+				UsoHabilCent = 0;
 		}//switch()
 		if (isDrag == 1 && turno == Veri+2){
-			luch.at(pos1)->setAtaqueFisico(luch.at(pos1)->getAtaqueFisico() / 2);
+			luch->get(pos1)->setAtaqueFisico(luch->get(pos1)->getAtaqueFisico() / 2);
 		}
 
 		//Segundo Luchador
@@ -167,24 +186,24 @@ void Simulacion(vector<Luchador*>luch, int pos1, int pos2){
 		random2 = rand()%3;
 		switch(random2){
 			case 0:
-				luch.at(pos1)->setHP(luch.at(pos1)->getHP() - luch.at(pos2)-> getAtaqueMagico());
+				luch->get(pos1)->setHP(luch->get(pos1)->getHP() - luch->get(pos2)-> getAtaqueMagico());
 				break;
 			case 1:
-				luch.at(pos1)->setHP(luch.at(pos1)->getHP() - luch.at(pos2)-> getAtaqueFisico());
+				luch->get(pos1)->setHP(luch->get(pos1)->getHP() - luch->get(pos2)-> getAtaqueFisico());
 				break;
 			case 2:
-				luch.at(pos2)->setHP(luch.at(pos2)->getHP() + (luch.at(pos2)->getHP() * 0.45));
+				luch->get(pos2)->setHP(luch->get(pos2)->getHP() + (luch->get(pos2)->getHP() * 0.45));
 				break;
 			case 3:
 				int randomHab = rand()%4;
 				do{
 					switch(randomHab){
 						case 0:
-							UsoHabil = 1;
-							for (int i = 0; i <=luch.at(pos2)->size()-1; ++i){
-								if (luch.at(pos2)->getClasesAprendidas(i) == "Guerrero"){
+							
+							for (int i = 0; i <=luch->get(pos2)->size()-1; ++i){
+								if (luch->get(pos2)->getClasesAprendidas(i) == "Guerrero"){
 									Luchador* LuTem = new Guerrero();
-									luch.at(pos2)->setHP(LuTem->HabilidadEspecial(UsoHabil, luch.at(pos2)->getHP()));
+									luch->get(pos2)->setHP(LuTem->HabilidadEspecial(UsoHabil, luch->get(pos2)->getHP()));
 									UsoHabil = 1;
 								}else{
 									break;
@@ -192,11 +211,11 @@ void Simulacion(vector<Luchador*>luch, int pos1, int pos2){
 							}
 							break;
 						case 1:
-							UsoHabil = 1;
-							for (int i = 0; i <=luch.at(pos2)->size()-1; ++i){
-								if (luch.at(pos2)->getClasesAprendidas(i) == "Mago"){
+							
+							for (int i = 0; i <=luch->get(pos2)->size()-1; ++i){
+								if (luch->get(pos2)->getClasesAprendidas(i) == "Mago"){
 									Luchador* LuTem = new Mago();
-									luch.at(pos2)->setHP(LuTem->HabilidadEspecial(UsoHabil, luch.at(pos2)->getHP()));
+									luch->get(pos2)->setHP(LuTem->HabilidadEspecial(UsoHabil, luch->get(pos2)->getHP()));
 									UsoHabil = 1;
 								}else{
 									break;
@@ -204,11 +223,11 @@ void Simulacion(vector<Luchador*>luch, int pos1, int pos2){
 							}
 							break;
 						case 2:
-							UsoHabil = 1;
-							for (int i = 0; i <=luch.at(pos2)->size()-1; ++i){
-								if (luch.at(pos2)->getClasesAprendidas(i) == "Alquimista"){
+							
+							for (int i = 0; i <=luch->get(pos2)->size()-1; ++i){
+								if (luch->get(pos2)->getClasesAprendidas(i) == "Alquimista"){
 									Luchador* LuTem = new Alquimista();
-									luch.at(pos2)->setHP(LuTem->HabilidadEspecial(UsoHabil, luch.at(pos2)->getHP()));
+									luch->get(pos2)->setHP(LuTem->HabilidadEspecial(UsoHabil, luch->get(pos2)->getHP()));
 									UsoHabil = 1;
 								}else{
 									break;
@@ -216,13 +235,13 @@ void Simulacion(vector<Luchador*>luch, int pos1, int pos2){
 							}
 							break;
 						case 3:
-							UsoHabil = 1;
+							
 							Veri = turno;
 							isDrag = 1;
-							for (int i = 0; i <=luch.at(pos2)->size()-1; ++i){
-								if (luch.at(pos2)->getClasesAprendidas(i) == "DragonBorn"){
+							for (int i = 0; i <=luch->get(pos2)->size()-1; ++i){
+								if (luch->get(pos2)->getClasesAprendidas(i) == "DragonBorn"){
 									Luchador* LuTem = new DragonBorn();
-									luch.at(pos2)->setAtaqueFisico(LuTem->HabilidadEspecial(UsoHabil, luch.at(pos2)->getAtaqueFisico()));
+									luch->get(pos2)->setAtaqueFisico(LuTem->HabilidadEspecial(UsoHabil, luch->get(pos2)->getAtaqueFisico()));
 									UsoHabil = 1;
 								}else{
 									break;
@@ -230,24 +249,85 @@ void Simulacion(vector<Luchador*>luch, int pos1, int pos2){
 							}
 							break;
 				}//switch()2
-				} while (UsoHabil != 1);
+				UsoHabilCent = 1;
+				} while (UsoHabilCent != 1);
+				UsoHabilCent = 0;
 		}//switch()
 		if (isDrag == 1 && turno == Veri+2){
-			luch.at(pos2)->setAtaqueFisico(luch.at(pos2)->getAtaqueFisico() / 2);
+			luch->get(pos2)->setAtaqueFisico(luch->get(pos2)->getAtaqueFisico() / 2);
 		}
 
-		if (luch.at(pos1)->getHP() <= 0){
-			luch.at(pos1)->setHP(0);
-			luch.at(pos2)->setHP(HPLu2);
-			cout<<luch.at(pos1)->getNombre()<<" Ha Perdido!"<<endl;
-			cout<<luch.at(pos2)->getNombre()<<" Ha Ganado!"<<endl;
-		}else if (luch.at(pos2)->getHP() <= 0){
-			luch.at(pos2)->setHP(0);
-			luch.at(pos1)->setHP(HPLu1);
-			cout<<luch.at(pos2)->getNombre()<<" Ha Perdido!"<<endl;
-			cout<<luch.at(pos1)->getNombre()<<" Ha Ganado!"<<endl;
+		if (luch->get(pos1)->getHP() <= 0){
+			luch->get(pos1)->setHP(0);
+			luch->get(pos2)->setHP(HPLu2);
+			
+		}else if (luch->get(pos2)->getHP() <= 0){
+			luch->get(pos2)->setHP(0);
+			luch->get(pos1)->setHP(HPLu1);
 		}
 		turno++;
-	} while ((luch.at(pos1)->getHP() != 0) && (luch.at(pos2)->getHP() != 0));
+	} while ((luch->get(pos1)->getHP() != 0) && (luch->get(pos2)->getHP() != 0));
+	if (luch->get(pos1)->getHP() == 0){
+		cout<<luch->get(pos1)->getNombre()<<" Ha Perdido!"<<endl
+			<<endl;
+		cout<<luch->get(pos2)->getNombre()<<" Ha Ganado!"<<endl
+			<<endl;
+		cout<<luch->get(pos2)->getNombre()<<endl
+			<<"Exp Actual:       | "<<luch->get(pos2)->getExp()<<endl
+			<<"Exp Ganada:       | "<<35*2<<endl
+			<<endl;
+		luch->get(pos2)->addExp(luch->get(pos2)->HabilidadPasiva(UsoHabil, 35));
+		cout<<"Total Exp:        | "<<luch->get(pos2)->getExp()<<endl;
+		VerificarExp(luch, pos2);
+		luch->remove(pos1);
+	}else if (luch->get(pos2)->getHP() == 0){
+		cout<<luch->get(pos2)->getNombre()<<" Ha Perdido!"<<endl
+			<<endl;
+		cout<<luch->get(pos1)->getNombre()<<" Ha Ganado!"<<endl
+			<<endl;
+		cout<<luch->get(pos1)->getNombre()<<endl
+			<<"Exp Actual:        | "<<luch->get(pos1)->getExp()<<endl
+			<<"Exp Ganada:        | "<<35*2<<endl
+			<<endl;
+		luch->get(pos1)->addExp(luch->get(pos1)->HabilidadPasiva(UsoHabil, 35));
+		cout<<"Total Exp:         | "<<luch->get(pos1)->getExp()<<endl;
+		VerificarExp(luch, pos1);
+		luch->remove(pos2);
+	}
 	cout<<"Fin de la Simulación"<<endl;
 }//Simulacion()
+
+void VerificarExp(ADTList* luch, int pos){
+	if (luch->get(pos)->getExp() >= 100){
+		Luchador* lu = new Guerrero(luch->get(pos)->getNombre());
+		luch->remove(pos);
+		luch->insert(lu, pos);
+		luch->get(pos)->addClasesAprendidas("Aprendiz");
+		luch->get(pos)->addClasesAprendidas("Guerrero");
+	}else if (luch->get(pos)->getExp() >= 200){
+		Luchador* lu = new Mago(luch->get(pos)->getNombre());
+		luch->remove(pos);
+		luch->insert(lu, pos);
+		luch->get(pos)->addClasesAprendidas("Aprendiz");
+		luch->get(pos)->addClasesAprendidas("Guerrero");
+		luch->get(pos)->addClasesAprendidas("Mago");
+	}else if (luch->get(pos)->getExp() >= 300){
+		Luchador* lu = new Alquimista(luch->get(pos)->getNombre());
+		luch->remove(pos);
+		luch->insert(lu, pos);
+		luch->get(pos)->addClasesAprendidas("Aprendiz");
+		luch->get(pos)->addClasesAprendidas("Guerrero");
+		luch->get(pos)->addClasesAprendidas("Mago");
+		luch->get(pos)->addClasesAprendidas("Alquimista");
+	}else if (luch->get(pos)->getExp() >= 400){
+		Luchador* lu = new Alquimista(luch->get(pos)->getNombre());
+		luch->remove(pos);
+		luch->insert(lu, pos);
+		luch->get(pos)->addClasesAprendidas("Aprendiz");
+		luch->get(pos)->addClasesAprendidas("Guerrero");
+		luch->get(pos)->addClasesAprendidas("Mago");
+		luch->get(pos)->addClasesAprendidas("Alquimista");
+		luch->get(pos)->addClasesAprendidas("DragonBorn");
+	}
+
+}//VerificarExp

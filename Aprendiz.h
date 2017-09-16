@@ -9,7 +9,7 @@ class Aprendiz : public Luchador{
 		Aprendiz();
 		Aprendiz(string);
 		int HabilidadPasiva(int, int);
-		int HabilidadEspecial();
+		int HabilidadEspecial(int, int);
 		string toString();
 		~Aprendiz();
 };

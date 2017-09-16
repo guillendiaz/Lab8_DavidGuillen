@@ -2,20 +2,28 @@
 #define LINKEDLIST_H
 #include "ADTList.h"
 #include <iostream>
+#include "Luchador.h"
+#include "nodo.h"
 
 using namespace std;
 
 class LinkedList : public ADTList{
-	struct Node{
-		Object* data;
-		Node* next;
-	};
-	private:
-		
+	protected:
+		nodo* head;
+	
 	public:
 		LinkedList();
-		~LinkedList();
-	
+		virtual ~LinkedList();
+		virtual bool insert(Luchador*, int);
+		virtual Luchador* remove(int);
+		virtual Luchador* first()const;
+		virtual Luchador* last()const;
+		virtual void clear();
+		virtual int indexOf(Luchador*)const;
+		virtual Luchador* get(int);
+		virtual int Capacity()const;
+		virtual bool isEmpty()const;
+		virtual bool isFull()const;
 };
 
 #endif

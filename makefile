@@ -1,7 +1,7 @@
-main: main.o Luchador.o Aprendiz.o Guerrero.o Mago.o Alquimista.o DragonBorn.o
-	g++ main.o Luchador.o Aprendiz.o Guerrero.o Mago.o Alquimista.o DragonBorn.o -o main
+main: main.o Luchador.o Aprendiz.o Guerrero.o Mago.o Alquimista.o DragonBorn.o ADTList.o LinkedList.o nodo.o
+	g++ main.o Luchador.o Aprendiz.o Guerrero.o Mago.o Alquimista.o DragonBorn.o ADTList.o LinkedList.o nodo.o -o main
 
-main.o: main.cpp Luchador.h Aprendiz.h Guerrero.h Mago.h Alquimista.h DragonBorn.h
+main.o: main.cpp Luchador.h Aprendiz.h Guerrero.h Mago.h Alquimista.h DragonBorn.h ADTList.h LinkedList.h nodo.h
 	g++ -c main.cpp
 
 Luchador.o: Luchador.h Luchador.cpp
@@ -21,6 +21,15 @@ Alquimista.o: Alquimista.h Alquimista.cpp
 
 DragonBorn.o: DragonBorn.h DragonBorn.cpp
 	g++ -c DragonBorn.cpp
+
+LinkedList.o:	ADTList.h LinkedList.cpp LinkedList.h
+	g++ -c LinkedList.cpp
+
+ADTList.o:	ADTList.h ADTList.cpp Luchador.h
+	g++ -c ADTList.cpp
+
+nodo.o:	nodo.h nodo.cpp
+	g++ -c nodo.cpp
 
 clean:
 	rm *.o main

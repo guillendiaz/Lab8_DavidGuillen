@@ -15,6 +15,7 @@ Guerrero::Guerrero(string pNombre){
 	this->ExpNecesaria = 100;
 	this->Exp = 0;
 	this->ExpEnt = 50;
+	this->Exp = ExpEnt;
 }
 
 int Guerrero::HabilidadPasiva(){

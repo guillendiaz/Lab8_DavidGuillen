@@ -35,9 +35,10 @@ class Luchador{
 		int getExpNecesaria();
 		int getExpEnt();
 
-		virtual int HabilidadPasiva();
+		virtual int HabilidadPasiva(int, int);
 		virtual int HabilidadEspecial(int, int);
 		virtual string toString();
+		virtual bool equals(Luchador*)const;
 		~Luchador();
 };
 
