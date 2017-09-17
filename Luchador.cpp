@@ -33,7 +33,7 @@ int Luchador::getCantBatGan(){
 }
 
 void Luchador::addExp(int pExp){
-	this->Exp += pExp;
+	Exp = pExp;
 }
 
 int Luchador::getExp(){
@@ -100,11 +100,6 @@ string Luchador::toString(){
 bool Luchador::equals(Luchador* other)const{
 	return other==this;
 
-}
-
-ostream& operator<<(ostream& writeSave, const string dato){
-	writeSave<<"-------------------------------"<<endl<<dato<<endl<<"-------------------------------"<<endl;
-	return writeSave;
 }
 
 Luchador::~Luchador(){

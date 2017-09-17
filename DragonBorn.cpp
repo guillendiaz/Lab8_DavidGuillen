@@ -15,6 +15,7 @@ DragonBorn::DragonBorn(string pNombre){
 	this->ExpNecesaria = 400;
 	this->Exp = 0;
 	this->ExpEnt = 150;
+	this->Exp = ExpEnt;
 }
 int DragonBorn::HabilidadPasiva(){
 

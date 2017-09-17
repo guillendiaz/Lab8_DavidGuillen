@@ -19,7 +19,7 @@ Aprendiz::Aprendiz(string pNombre){
 }
 
 int Aprendiz::HabilidadPasiva(int ValUso, int pExp){
-	if (ValUso == 1){
+	if (ValUso == 0){
 		cout<<"Habilidad Pasiva: Gana Doble Exp al Vencer Cualquier Peleador"<<endl;
 		return pExp * 2;
 	}else{

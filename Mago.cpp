@@ -15,6 +15,7 @@ Mago::Mago(string pNombre){
 	this->ExpNecesaria = 200;
 	this->Exp = 0;
 	this->ExpEnt = 75;
+	this->Exp = ExpEnt;
 }
 
 int Mago::HabilidadPasiva(){

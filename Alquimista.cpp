@@ -15,6 +15,7 @@ Alquimista::Alquimista(string pNombre){
 	this->ExpNecesaria = 300;
 	this->Exp = 0;
 	this->ExpEnt = 100;
+	this->Exp = ExpEnt;
 }
 
 int Alquimista::HabilidadPasiva(){
