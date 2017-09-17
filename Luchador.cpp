@@ -102,6 +102,11 @@ bool Luchador::equals(Luchador* other)const{
 
 }
 
+ostream& operator<<(ostream& writeSave, const string dato){
+	writeSave<<"-------------------------------"<<endl<<dato<<endl<<"-------------------------------"<<endl;
+	return writeSave;
+}
+
 Luchador::~Luchador(){
 
 }

@@ -10,6 +10,7 @@
 #include "DragonBorn.h"
 #include "ADTList.h"
 #include "LinkedList.h"
+#include "Save.h"
 
 using namespace std;
 
@@ -18,8 +19,8 @@ int Menu();
 void Simulacion(ADTList*, int, int);
 void VerificarExp(ADTList*, int);
 int main(){
-	vector<Luchador*> luchadores;
 	ADTList* list = new LinkedList();
+	ofstream Save("Save.txt", ios::app);
 	int opcion;
 	do{
 		switch(opcion=Menu()){
@@ -30,12 +31,11 @@ int main(){
 				cin>>nombre;
 				Luchador* lu = new Aprendiz(nombre);
 				lu->addClasesAprendidas(lu->getClase());
-				luchadores.push_back(lu);
-				
 				if(list->insert(lu,pos)){
 					cout<< "Se ha Ingresado!"<<endl
 						<<endl;
 					pos++;
+					Save<<list->get(0)->getNombre();
 				}else{
 					cout<<"Ocurrio un Error"<<endl
 						<<endl;
@@ -99,6 +99,7 @@ int Menu(){
 }//Menu()
 
 void Simulacion(ADTList* luch, int pos1, int pos2){
+	string dato;
 	srand(time(NULL));
 	int UsoHabil = 0, UsoHabilCent = 0, isDrag = 0, Veri = 0, turno=0, random, random2, HPLu1 = 0, HPLu2 = 0;
 	HPLu1 = luch->get(pos1)->getHP();
@@ -107,6 +108,7 @@ void Simulacion(ADTList* luch, int pos1, int pos2){
 		//Inicio de la Simulacion
 		//Primer Luchador
 		//Decidir que Hacer
+		dato = "------------------------------" + "\n" + "Inicio De la Lucha" +  "\n";
 		random = rand()%4;
 		switch(random){
 			case 0:

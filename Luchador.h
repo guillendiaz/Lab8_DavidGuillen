@@ -39,6 +39,8 @@ class Luchador{
 		virtual int HabilidadEspecial(int, int);
 		virtual string toString();
 		virtual bool equals(Luchador*)const;
+
+		friend ostream& operator<<(ostream&, const string);
 		~Luchador();
 };
 
