@@ -193,6 +193,7 @@ void Simulacion(ADTList* luch, int pos1, int pos2){
 
 		//Segundo Luchador
 		//Decidir que Hacer
+		dato+="\n";
 		dato += "Turno de " + luch->get(pos2)->getNombre() + "\n";
 		random2 = rand()%3;
 		switch(random2){
@@ -287,6 +288,7 @@ void Simulacion(ADTList* luch, int pos1, int pos2){
 		turno++;
 		Turno++;
 		Save<<dato;
+		dato="";
 	} while ((luch->get(pos1)->getHP() != 0) && (luch->get(pos2)->getHP() != 0));
 	if (luch->get(pos1)->getHP() == 0){
 		cout<<luch->get(pos1)->getNombre()<<" Ha Perdido!"<<endl
